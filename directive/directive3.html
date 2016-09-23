@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html lang='utf-8' ng-app='app'>
+  <head>
+    <title>Hi</title>
+    <script src="../angular.min.js"></script>
+    <script language="javascript">
+	    var appModule = angular.module('app', []);
+	    appModule.controller("MyCtrl",function ($scope) {
+	    	$scope.loadData=function() {
+	    		console.log("加载数据中。。。");
+	    	}
+	    });
+	    function MyCtrl() {
+	    }
+	    //定义一个directive名字叫loader
+	    appModule.directive('loader', function() {
+	      return {
+	      	//定义标签名字和attribue
+	        restrict: 'AE',
+	        link:function(scope,element,attrs) {
+	        	//绑定事件
+	        	element.bind("mouseenter",function() {
+	        		alert('aa');
+	        	});
+	        },
+	        replace: true
+	      };
+	    });
+    </script>
+  </head>
+  <body>
+  	<div ng-controller="MyCtrl">
+  		<loader>滑动加载</loader>
+  	</div>
+  	<br><br>
+  	1.定义一个directive名字叫loader
+  	2.绑定<loader>的一个事件，鼠标移动
+  	3.当鼠标移动进来的时候显示alert
+  </body>
+</html>
