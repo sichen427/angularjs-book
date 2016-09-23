@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang='en' ng-app='app'>
+  <head>
+    <title>Hi</title>
+    <script src="../angular.min.js"></script>
+  </head>
+  <body>
+    <div hello>
+    	这里是div内部的东西
+    </div>
+<script>
+  var appModule = angular.module('app', []);
+  appModule.directive('hello', function() {
+    return {
+      template: '<div>Hi there <span ng-transclude></span>!</div>',
+      transclude: true,
+      replace: true
+    };
+  });
+</script>
+  </body>
+  使用transclude,指令中现有的东西能够继续输出（不覆盖）
+</html>
