@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html lang='utf-8' ng-app='app'>
+  <head>
+    <title>Hi</title>
+    <script src="../angular.min.js"></script>
+    <script language="javascript">
+	    var appModule = angular.module('app', []);
+	    //定义一个controller
+	    appModule.controller("MyCtrl",function ($scope) {
+	    	$scope.loadData=function() {
+	    		console.log("加载数据中。。。");
+	    		alert("加载数据中。。。");
+	    	}
+	    });
+	    //定义一个controller2
+	    appModule.controller("MyCtrl2",function ($scope) {
+	    	$scope.loadData2=function() {
+	    		console.log("加载数据中2222。。。");
+	    		alert("加载数据中2222222。。。");
+	    	}
+	    });
+	    //定义一个directive名字叫loader
+	    appModule.directive('loader', function() {
+	      return {
+	      	//定义标签名字和attribue
+	        restrict: 'E',
+	        link:function(scope,element,attrs) {
+	        	//绑定事件
+	        	element.bind("mouseenter",function() {
+	        		scope.$apply(attrs.howtoload);
+	        	});
+	        },
+	        replace: true
+	      };
+	    });
+    </script>
+  </head>
+  <body>
+  	<div ng-controller="MyCtrl">
+  		<loader howToLoad="loadData()">滑动加载</loader>
+  	</div>
+  	<br>
+  	<div ng-controller="MyCtrl2">
+  		<loader howToLoad="loadData2()">滑动加载222</loader>
+  	</div>
+
+  	<br><br>
+  	1.本例演示了directiv指令中定义的属性attribute
+  	2.有两个controller，一个MyCtrl,一个MyCtrl2
+  	3.loader的link的属性中分别调用不同的方法
+  </body>
+</html>
