@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang='en' ng-app='app'>
+  <head>
+    <title>Hi</title>
+    <script src="../angular.min.js"></script>
+    <script src="hiThere.js"></script>
+    <script language="javascript">
+	    var appModule = angular.module('app', []);
+	    appModule.directive('hello', function() {
+	      return {
+	        restrict: 'E',
+	        template: '<div>my first directive</div>',
+	        replace: true
+	      };
+	    });
+    </script>
+  </head>
+  <body>
+    <hello></hello>
+  </body>
+</html>
