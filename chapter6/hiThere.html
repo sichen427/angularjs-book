@@ -3,18 +3,9 @@
   <head>
     <title>Hi</title>
     <script src="../angular.min.js"></script>
+    <script src="hiThere.js"></script>
   </head>
   <body>
     <hello></hello>
-  <script>
-    var appModule = angular.module('app', []);
-    appModule.directive('hello', function() {
-      return {
-        restrict: 'E',
-        template: '<div>Hi there</div>',
-        replace: true
-      };
-    });
-  </script>
   </body>
 </html>
