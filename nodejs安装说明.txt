@@ -1,0 +1,2 @@
+安装http服务，安装好后通过http-server命令开启http服务，http://localhost:8080 or http://127.0.0.1:8080 
+npm install -g http-server
