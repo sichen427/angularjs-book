@@ -8,19 +8,18 @@
 	    appModule.controller("MyCtrl",function ($scope) {
 	    	$scope.loadData=function() {
 	    		console.log("加载数据中。。。");
+	    		alert("加载数据中。。。");
 	    	}
 	    });
-	    function MyCtrl() {
-	    }
 	    //定义一个directive名字叫loader
 	    appModule.directive('loader', function() {
 	      return {
 	      	//定义标签名字和attribue
-	        restrict: 'AE',
+	        restrict: 'E',
 	        link:function(scope,element,attrs) {
 	        	//绑定事件
 	        	element.bind("mouseenter",function() {
-	        		alert('aa');
+	        		scope.loadData();
 	        	});
 	        },
 	        replace: true
@@ -35,6 +34,7 @@
   	<br><br>
   	1.定义一个directive名字叫loader
   	2.绑定loader的一个事件，鼠标移动
-  	3.当鼠标移动进来的时候显示alert
+  	3.当鼠标移动进来的时候可以通过link的scope变量，访问到controller中定义的$scope变量
+  	4.调用$scope的函数
   </body>
 </html>
