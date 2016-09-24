@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html lang='utf-8' ng-app='app'>
+<head>
+	<title>Hi</title>
+	<script src="../angular.min.js"></script>
+	<script language="javascript">
+		var appModule = angular.module('app', []);
+
+	    //定义第一个directive名字叫superman
+	    appModule.directive('superman', function() {
+	    	return {
+	      	//为这个标识符创建一个新的作用域，而不是继承父作用域
+	      	scope: {},
+	      	controller:function ($scope) {
+	      		//定义各空数组
+	      		$scope.abilities = [];
+	      		this.addStrength = function() {
+	      			//数组中追加strengh
+	      			$scope.abilities.push("strength");
+	      		};
+	      		this.addSpeed = function() {
+	      			//数组中追加speed
+	      			$scope.abilities.push("speed");
+	      		};
+	      		this.addLight = function() {
+	      			//数组中追加light
+	      			$scope.abilities.push("light");
+	      		};
+	      	},
+	      	//定义标签名字和attribue
+	        restrict: 'AE',
+	        link:function(scope,element,attrs) {
+	        	//绑定事件
+	        	element.bind("mouseenter",function() {
+	        		console.log(scope.abilities);
+	        	});
+	        },
+	        replace: true
+	      }
+	  });
+
+		//定义第2个directive名字叫streng
+	    appModule.directive('strength', function() {
+	    	return {
+				require: '^superman',
+		        link:function(scope,element,attrs, supermanCtl) {
+		        	supermanCtl.addStrength();
+		        }
+	      	}
+	    });
+
+		//定义第3个directive名字叫speed
+	    appModule.directive('speed', function() {
+	      return {
+	      	require: '^superman',
+	        link:function(scope,element,attrs, supermanCtrl) {
+	        	supermanCtrl.addSpeed();
+	        },
+	        replace: true
+	      };
+	    });
+
+		//定义第4个directive名字叫light
+	    appModule.directive('light', function() {
+	      return {
+	      	require: '^superman',
+	        link:function(scope,element,attrs, supermanCtrl) {
+	        	supermanCtrl.addLight();
+	        },
+	        replace: true
+	      };
+	  });
+	</script>
+</head>
+<body>
+	<superman>一般的超人</superman>
+	<br>
+	<superman strength>超人-力量</superman>
+	<br>
+	<superman strength speed>超人-力量-速度</superman>
+	<br>
+	<superman strength speed light>超人-力量-速度-发光</superman>
+
+	<br><br>
+	1.本例演示了指令之间的交互
+</body>
+</html>
